@@ -7,7 +7,7 @@ type Dish struct {
 }
 
 // CountCalories ...
-func CountCalories(dish Dish) int {
+func (dish Dish) CountCalories() int {
 	return dish.Weight * dish.EnergyValue / 100
 }
 
@@ -15,7 +15,7 @@ func CountCalories(dish Dish) int {
 func CountTotalCalories(dishes []Dish) int {
 	totalCalories := 0
 	for _, dish := range dishes {
-		calories := CountCalories(dish)
+		calories := dish.CountCalories()
 		totalCalories = totalCalories + calories
 	}
 
