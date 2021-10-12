@@ -32,3 +32,18 @@ func CountTotalCalories(dishes []Dish) int {
 
 	return totalCalories
 }
+
+// CountTotalMacros ...
+func CountTotalMacros(dishes []Dish) (int, int, int) {
+	totalProtein := 0
+	totalFat := 0
+	totalCarbs := 0
+	for _, dish := range dishes {
+		protein, fat, carbs := dish.CountMacros()
+		totalProtein = totalProtein + protein
+		totalFat = totalFat + fat
+		totalCarbs = totalCarbs + carbs
+	}
+
+	return totalProtein, totalFat, totalCarbs
+}
