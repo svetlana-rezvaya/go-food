@@ -2,9 +2,9 @@ package food
 
 // Macros ...
 type Macros struct {
-	Protein int
-	Fat     int
-	Carbs   int
+	Protein float64
+	Fat     float64
+	Carbs   float64
 }
 
 // Add ...
@@ -17,13 +17,13 @@ func (macros Macros) Add(anotherMacros Macros) Macros {
 
 // Dish ...
 type Dish struct {
-	Weight      int
-	EnergyValue int
+	Weight      float64
+	EnergyValue float64
 	Macros      Macros
 }
 
 // CountCalories ...
-func (dish Dish) CountCalories() int {
+func (dish Dish) CountCalories() float64 {
 	return dish.Weight * dish.EnergyValue / 100
 }
 
@@ -36,8 +36,8 @@ func (dish Dish) CountMacros() Macros {
 }
 
 // CountTotalCalories ...
-func CountTotalCalories(dishes []Dish) int {
-	totalCalories := 0
+func CountTotalCalories(dishes []Dish) float64 {
+	totalCalories := 0.0
 	for _, dish := range dishes {
 		calories := dish.CountCalories()
 		totalCalories = totalCalories + calories
