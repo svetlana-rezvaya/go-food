@@ -16,6 +16,14 @@ type Macros struct {
 	Carbs   int
 }
 
+// Add ...
+func (macros Macros) Add(anotherMacros Macros) Macros {
+	protein := macros.Protein + anotherMacros.Protein
+	fat := macros.Fat + anotherMacros.Fat
+	carbs := macros.Carbs + anotherMacros.Carbs
+	return Macros{Protein: protein, Fat: fat, Carbs: carbs}
+}
+
 // CountCalories ...
 func (dish Dish) CountCalories() int {
 	return dish.Weight * dish.EnergyValue / 100
@@ -42,15 +50,11 @@ func CountTotalCalories(dishes []Dish) int {
 
 // CountTotalMacros ...
 func CountTotalMacros(dishes []Dish) Macros {
-	totalProtein := 0
-	totalFat := 0
-	totalCarbs := 0
+	totalMacros := Macros{}
 	for _, dish := range dishes {
 		macros := dish.CountMacros()
-		totalProtein = totalProtein + macros.Protein
-		totalFat = totalFat + macros.Fat
-		totalCarbs = totalCarbs + macros.Carbs
+		totalMacros = totalMacros.Add(macros)
 	}
 
-	return Macros{Protein: totalProtein, Fat: totalFat, Carbs: totalCarbs}
+	return totalMacros
 }
