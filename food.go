@@ -1,14 +1,5 @@
 package food
 
-// Dish ...
-type Dish struct {
-	Weight      int
-	EnergyValue int
-	Protein     int
-	Fat         int
-	Carbs       int
-}
-
 // Macros ...
 type Macros struct {
 	Protein int
@@ -24,6 +15,13 @@ func (macros Macros) Add(anotherMacros Macros) Macros {
 	return Macros{Protein: protein, Fat: fat, Carbs: carbs}
 }
 
+// Dish ...
+type Dish struct {
+	Weight      int
+	EnergyValue int
+	Macros      Macros
+}
+
 // CountCalories ...
 func (dish Dish) CountCalories() int {
 	return dish.Weight * dish.EnergyValue / 100
@@ -31,9 +29,9 @@ func (dish Dish) CountCalories() int {
 
 // CountMacros ...
 func (dish Dish) CountMacros() Macros {
-	protein := dish.Weight * dish.Protein / 100
-	fat := dish.Weight * dish.Fat / 100
-	carbs := dish.Weight * dish.Carbs / 100
+	protein := dish.Weight * dish.Macros.Protein / 100
+	fat := dish.Weight * dish.Macros.Fat / 100
+	carbs := dish.Weight * dish.Macros.Carbs / 100
 	return Macros{Protein: protein, Fat: fat, Carbs: carbs}
 }
 
