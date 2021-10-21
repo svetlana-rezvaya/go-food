@@ -1,5 +1,11 @@
 package food
 
+// ComplexDish ...
+type ComplexDish struct {
+	Dishes []Dish
+	Part   float64
+}
+
 // CountTotalCalories ...
 func CountTotalCalories(dishes []Dish) float64 {
 	totalCalories := 0.0
