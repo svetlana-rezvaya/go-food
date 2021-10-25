@@ -6,6 +6,20 @@ type ComplexDish struct {
 	Part   float64
 }
 
+// CountCalories ...
+func (complexDish ComplexDish) CountCalories() float64 {
+	totalWeight := 0.0
+	for _, dish := range complexDish.Dishes {
+		totalWeight = totalWeight + dish.Weight
+	}
+
+	totalCalories := CountTotalCalories(complexDish.Dishes)
+
+	caloriesPerGram := totalCalories / totalWeight
+	portion := totalWeight * complexDish.Part
+	return caloriesPerGram * portion
+}
+
 // CountTotalCalories ...
 func CountTotalCalories(dishes []Dish) float64 {
 	totalCalories := 0.0
