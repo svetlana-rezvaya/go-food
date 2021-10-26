@@ -14,10 +14,7 @@ func (complexDish ComplexDish) CountCalories() float64 {
 	}
 
 	totalCalories := CountTotalCalories(complexDish.Dishes)
-
-	caloriesPerGram := totalCalories / totalWeight
-	portion := totalWeight * complexDish.Part
-	return caloriesPerGram * portion
+	return countPartialPortionValue(totalWeight, complexDish.Part, totalCalories)
 }
 
 // CountMacros ...
@@ -28,16 +25,20 @@ func (complexDish ComplexDish) CountMacros() Macros {
 	}
 
 	totalMacros := CountTotalMacros(complexDish.Dishes)
-
-	proteinPerGram := totalMacros.Protein / totalWeight
-	portion := totalWeight * complexDish.Part
-	protein := proteinPerGram * portion
-
-	fatPerGram := totalMacros.Fat / totalWeight
-	fat := fatPerGram * portion
-
-	carbsPerGram := totalMacros.Carbs / totalWeight
-	carbs := carbsPerGram * portion
-
+	protein :=
+		countPartialPortionValue(totalWeight, complexDish.Part, totalMacros.Protein)
+	fat := countPartialPortionValue(totalWeight, complexDish.Part, totalMacros.Fat)
+	carbs :=
+		countPartialPortionValue(totalWeight, complexDish.Part, totalMacros.Carbs)
 	return Macros{Protein: protein, Fat: fat, Carbs: carbs}
+}
+
+func countPartialPortionValue(
+	weight float64,
+	part float64,
+	value float64,
+) float64 {
+	valuePerGram := value / weight
+	portion := weight * part
+	return valuePerGram * portion
 }
