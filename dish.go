@@ -9,13 +9,17 @@ type Dish struct {
 
 // CountCalories ...
 func (dish Dish) CountCalories() float64 {
-	return dish.Weight * dish.EnergyValue / 100
+	return countPortionValue(dish.Weight, dish.EnergyValue)
 }
 
 // CountMacros ...
 func (dish Dish) CountMacros() Macros {
-	protein := dish.Weight * dish.Macros.Protein / 100
-	fat := dish.Weight * dish.Macros.Fat / 100
-	carbs := dish.Weight * dish.Macros.Carbs / 100
+	protein := countPortionValue(dish.Weight, dish.Macros.Protein)
+	fat := countPortionValue(dish.Weight, dish.Macros.Fat)
+	carbs := countPortionValue(dish.Weight, dish.Macros.Carbs)
 	return Macros{Protein: protein, Fat: fat, Carbs: carbs}
+}
+
+func countPortionValue(weight float64, value float64) float64 {
+	return weight * value / 100
 }
