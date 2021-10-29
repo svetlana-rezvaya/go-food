@@ -1,7 +1,7 @@
 package food
 
 // CountTotalWeight ...
-func CountTotalWeight(dishes []Dish) float64 {
+func CountTotalWeight(dishes []SimpleDish) float64 {
 	totalWeight := 0.0
 	for _, dish := range dishes {
 		totalWeight = totalWeight + dish.Weight
@@ -11,7 +11,7 @@ func CountTotalWeight(dishes []Dish) float64 {
 }
 
 // CountTotalCalories ...
-func CountTotalCalories(dishes []Dish) float64 {
+func CountTotalCalories(dishes []SimpleDish) float64 {
 	totalCalories := 0.0
 	for _, dish := range dishes {
 		calories := dish.CountCalories()
@@ -22,7 +22,7 @@ func CountTotalCalories(dishes []Dish) float64 {
 }
 
 // CountTotalMacros ...
-func CountTotalMacros(dishes []Dish) Macros {
+func CountTotalMacros(dishes []SimpleDish) Macros {
 	totalMacros := Macros{}
 	for _, dish := range dishes {
 		macros := dish.CountMacros()
