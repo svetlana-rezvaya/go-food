@@ -7,6 +7,11 @@ type SimpleDish struct {
 	Macros      Macros
 }
 
+// CountWeight ...
+func (simpleDish SimpleDish) CountWeight() float64 {
+	return simpleDish.Weight
+}
+
 // CountCalories ...
 func (simpleDish SimpleDish) CountCalories() float64 {
 	return countPortionValue(simpleDish.Weight, simpleDish.EnergyValue)

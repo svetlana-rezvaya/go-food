@@ -4,7 +4,8 @@ package food
 func CountTotalWeight(dishes []SimpleDish) float64 {
 	totalWeight := 0.0
 	for _, dish := range dishes {
-		totalWeight = totalWeight + dish.Weight
+		weight := dish.CountWeight()
+		totalWeight = totalWeight + weight
 	}
 
 	return totalWeight

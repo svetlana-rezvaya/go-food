@@ -6,6 +6,11 @@ type ComplexDish struct {
 	Part   float64
 }
 
+// CountWeight ...
+func (complexDish ComplexDish) CountWeight() float64 {
+	return CountTotalWeight(complexDish.Dishes)
+}
+
 // CountCalories ...
 func (complexDish ComplexDish) CountCalories() float64 {
 	totalWeight := CountTotalWeight(complexDish.Dishes)
