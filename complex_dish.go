@@ -2,7 +2,7 @@ package food
 
 // ComplexDish ...
 type ComplexDish struct {
-	Dishes []SimpleDish
+	Dishes []Dish
 	Part   float64
 }
 
