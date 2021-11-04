@@ -1,6 +1,9 @@
 package food
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestCountTotalWeight_empty(test *testing.T) {
 	receivedTotalWeight := CountTotalWeight([]Dish{})
@@ -55,6 +58,38 @@ func TestCountTotalCalories_nonEmpty(test *testing.T) {
 			"failed:\n  expected: %+v\n  actual: %+v",
 			wantedTotalCalories,
 			receivedTotalCalories,
+		)
+		test.Fail()
+	}
+}
+
+func TestCountTotalMacros_empty(test *testing.T) {
+	receivedTotalMacros := CountTotalMacros([]Dish{})
+
+	wantedTotalMacros := Macros{Protein: 0, Fat: 0, Carbs: 0}
+	if !reflect.DeepEqual(receivedTotalMacros, wantedTotalMacros) {
+		test.Logf(
+			"failed:\n  expected: %+v\n  actual: %+v",
+			wantedTotalMacros,
+			receivedTotalMacros,
+		)
+		test.Fail()
+	}
+}
+
+func TestCountTotalMacros_nonEmpty(test *testing.T) {
+	dishes := []Dish{
+		mockDish{macros: Macros{Protein: 10, Fat: 20, Carbs: 30}},
+		mockDish{macros: Macros{Protein: 100, Fat: 200, Carbs: 300}},
+	}
+	receivedTotalMacros := CountTotalMacros(dishes)
+
+	wantedTotalMacros := Macros{Protein: 110, Fat: 220, Carbs: 330}
+	if !reflect.DeepEqual(receivedTotalMacros, wantedTotalMacros) {
+		test.Logf(
+			"failed:\n  expected: %+v\n  actual: %+v",
+			wantedTotalMacros,
+			receivedTotalMacros,
 		)
 		test.Fail()
 	}
