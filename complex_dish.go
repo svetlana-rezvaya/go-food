@@ -14,16 +14,22 @@ func (complexDish ComplexDish) CountWeight() float64 {
 // CountCalories ...
 func (complexDish ComplexDish) CountCalories() float64 {
 	totalWeight := CountTotalWeight(complexDish.Dishes)
-	totalCalories := CountTotalCalories(complexDish.Dishes)
+	if totalWeight == 0 {
+		return 0
+	}
 
+	totalCalories := CountTotalCalories(complexDish.Dishes)
 	return countPartialPortionValue(totalWeight, complexDish.Part, totalCalories)
 }
 
 // CountMacros ...
 func (complexDish ComplexDish) CountMacros() Macros {
 	totalWeight := CountTotalWeight(complexDish.Dishes)
-	totalMacros := CountTotalMacros(complexDish.Dishes)
+	if totalWeight == 0 {
+		return Macros{}
+	}
 
+	totalMacros := CountTotalMacros(complexDish.Dishes)
 	protein :=
 		countPartialPortionValue(totalWeight, complexDish.Part, totalMacros.Protein)
 	fat := countPartialPortionValue(totalWeight, complexDish.Part, totalMacros.Fat)
