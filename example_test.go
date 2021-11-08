@@ -55,7 +55,7 @@ func Example() {
 					Macros:      food.Macros{Protein: 0, Fat: 100, Carbs: 0},
 				},
 			},
-			Part: 0.2,
+			PartAsWeight: 200,
 		},
 		// green tea with honey
 		food.ComplexDish{
@@ -73,7 +73,7 @@ func Example() {
 					Macros:      food.Macros{Protein: 0.3, Fat: 0, Carbs: 82},
 				},
 			},
-			Part: 1,
+			PartAsPercent: 1,
 		},
 	}
 
@@ -88,6 +88,6 @@ func Example() {
 	})
 
 	// Output:
-	// calories: 684.24
-	// macros: {Protein:55.57 Fat:27.43 Carbs:56.9}
+	// calories: 661.02
+	// macros: {Protein:55.38 Fat:25.25 Carbs:55.95}
 }
