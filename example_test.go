@@ -80,11 +80,12 @@ func Example() {
 	calories := food.CountTotalCalories(dishes)
 	macros := food.CountTotalMacros(dishes)
 
-	fmt.Printf("calories: %g\n", roundToPrecision(calories, 2))
+	const precision = 2
+	fmt.Printf("calories: %g\n", roundToPrecision(calories, precision))
 	fmt.Printf("macros: %+v\n", food.Macros{
-		Protein: roundToPrecision(macros.Protein, 2),
-		Fat:     roundToPrecision(macros.Fat, 2),
-		Carbs:   roundToPrecision(macros.Carbs, 2),
+		Protein: roundToPrecision(macros.Protein, precision),
+		Fat:     roundToPrecision(macros.Fat, precision),
+		Carbs:   roundToPrecision(macros.Carbs, precision),
 	})
 
 	// Output:
